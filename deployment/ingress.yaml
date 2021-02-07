@@ -1,0 +1,59 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: fwdauth
+  namespace: kube-dashboard
+spec:
+  forwardAuth:
+    address: https://kube-dashboard-fwdauth.kube-dashboard.svc.cluster.local:443/token
+    authResponseHeaders:
+      - "Authorization"
+    tls:
+      insecureSkipVerify: true
+
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: kube-dashboard
+#   namespace: kube-dashboard
+#   annotations:
+#     traefik.ingress.kubernetes.io/router.middlewares: kube-dashboard-fwdauth@kubernetescrd
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: "/"
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: kubernetes-dashboard
+#             port:
+#               number: 443
+
+
+---
+
+# Source: traefik/templates/dashboard-hook-ingressroute.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kube-dashboard
+  namespace: kube-dashboard
+  labels:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik
+spec:
+  entryPoints:
+    - websecure
+  tls: {}
+
+  routes:
+  - match: PathPrefix(`/`)
+    kind: Rule
+    middlewares:
+    - name: fwdauth
+    services:
+    - name: kubernetes-dashboard
+      port: 443
+      # kind: TraefikService

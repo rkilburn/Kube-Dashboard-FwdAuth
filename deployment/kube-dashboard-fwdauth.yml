@@ -1,0 +1,118 @@
+# openssl req -nodes -new -x509 -keyout tls.key -out tls.crt 
+# kubectl create secret tls kube-dashboard-fwdauth-certs --cert=tls.crt --key=tls.key --dry-run=client -oyaml > secrets.yaml
+apiVersion: v1
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN2akNDQWFZQ0NRQ21QQ2xwWUl3UCtUQU5CZ2txaGtpRzl3MEJBUXNGQURBaE1SOHdIUVlEVlFRRERCWnIKZFdKbExXUmhjMmhpYjJGeVpDMW1kMlJoZFhSb01CNFhEVEl4TURJd056RTRNamN6TTFvWERUSXhNRE13T1RFNApNamN6TTFvd0lURWZNQjBHQTFVRUF3d1dhM1ZpWlMxa1lYTm9ZbTloY21RdFpuZGtZWFYwYURDQ0FTSXdEUVlKCktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQU53WGZ2cVFDYTF0cmprOXZXT0sxeXBhSkxJL3d0SlMKUVdLSEtFQ2pLaGNRMkh3UzZZS3lzcGhLb25Ld0x4OGtkMHNqTlNtOWdyTlhVQmRvZjZHaEx5eVpSNVUvQ09kSgpEeXNWblpkaVV3bjdLVG1GSGtKSEFvR1FIMlMwSmdJK0tpU3NVcGFIdGI2V2wwZHdHL1RPZXJPRWdUeDF1SHQ0ClRsdXVhV2VJN0pncVZkY1ZXTDkvd3FQK2RVcFQ5blg5MUZlSjJHNnYyTXFhNHhKU0k4b09rb3hlSjFXOVB4Uk0KelQra2dDZVZNSkxhcm91YjFjQlB4VmZJQitBMTVOaXk1R2o5b1ZOdi96bmR2WXRlOFhkNlgwTm9KYXZtV1lWSApXM2dkb1psV250cldlZG85L2NkeWlZLzF1ZWVpMENWZTlZZ2w1OEtqdnRYU29DQ0pQNkN3YnJrQ0F3RUFBVEFOCkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQUxqZjFzcVFzVTVzeUJyS25GbVhtTWRsU2lqOUt3c0Z2Yi92NnExVGgKSVMwSTFaZHdtbG1ZbHRMSEs5QS9kNUZ2TnA0aVNwRk43MFRqdUd2UkdYWFJpYnBsYlRHSUNSK0FoQWREVlM3bwo2UWp5QlowTUF4ZzBTMURrRzN2SzNtbnAwOEJWVHlCT2FDdnVpeDNqWVJ6MHVFMXU5WHl3U2Vud0V2WDcxZ0pwCjFwcFp4ZUdwKzRBQUtjNHN3eDYzakZGcEpxUTVkeTI5cmpVeEJBNmR1N3FKUi8vSkhSaHlIeXA1R3k1TWd4MzkKTzdiWnZwUnhlM28xa1BMZUJFU0QxQjJNVENzT1JkMzd5djJyM3pwRjRMLzF1QTdaQ0RIeWNveVJOYWF1bjQ3YgorTzlqUm1kZ3QwTUJyeG4zQ2FkdGNETzBwNytabUIwRSswZmJqajFFTTRreG9BPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRRGNGMzc2a0FtdGJhNDUKUGIxaml0Y3FXaVN5UDhMU1VrRmloeWhBb3lvWEVOaDhFdW1Dc3JLWVNxSnlzQzhmSkhkTEl6VXB2WUt6VjFBWAphSCtob1M4c21VZVZQd2puU1E4ckZaMlhZbE1KK3lrNWhSNUNSd0tCa0I5a3RDWUNQaW9rckZLV2g3VytscGRICmNCdjB6bnF6aElFOGRiaDdlRTVicm1sbmlPeVlLbFhYRlZpL2Y4S2ovblZLVS9aMS9kUlhpZGh1cjlqS211TVMKVWlQS0RwS01YaWRWdlQ4VVRNMC9wSUFubFRDUzJxNkxtOVhBVDhWWHlBZmdOZVRZc3VSby9hRlRiLzg1M2IyTApYdkYzZWw5RGFDV3I1bG1GUjF0NEhhR1pWcDdhMW5uYVBmM0hjb21QOWJubm90QWxYdldJSmVmQ283N1YwcUFnCmlUK2dzRzY1QWdNQkFBRUNnZ0VCQUtkakMwU2ZGVzBiOUp3K00zS29Ybm9zY3FwS1NlNVJkcjdya2hhT3dXMG4KZDYzdGFFRHBqV0M3cW83VkpoRm1WNEFDdCtVVjUzaGtHRnFsTkNTR0JPM0RhYWk5ZHhVSUFJeEE5VWowRTdtTQpsazdUeWk2WCtQVDIycGxwVlZyeFVuWHZ4U1FNOUpHTjBHSVpobm1LSzlHcUhld1FrQXovYzREUXhnTmpKS1dZCmEyTVVSak1hMjh4U2lqTEI5Q3pPS0pQZnJ5aUUwZ09NdldlSE5oWSs2Y0hkaXJXUXZFQ2JhZ29xSkJEWlYvc1IKMEszOVY3N1F2SE5zdXlhL0FNYzZqblROM1N0UXlTN1lidU1xdkNaeHBZMFl6UHpHSm1oUFhhQy90Y0R1V2swRwpaZlE0a1NHMFhSM1JYRDcrT1hkeFhSYTJCS3U4QmlMZG5kNzdDbmF5azRFQ2dZRUErNXJNVDdQUlpHUkpQWUl3CjRsUE4xVE84Y3BEQ2xTRVZFMS9XdStHZERQcng4dFNXcFBSNWp0UExKK0ZYNGhRVFZGdzRGMUc2VTkwdjZBM0YKT2JqVmJpTFk0ODNRV2dKUGpCdnFaU0p5NVNYdWs5cGpuNzlDVE1QMEtvdmR0dHhvcU9xLzFOQ2xPYUtsZFp6Swo2Z0d2SzdVYUxOZXIzRHBnZXkwN2k4ZmRHYWtDZ1lFQTMrL0UzYTNxYWtXSHo5WFc1UktMMkJNRmNYUDFWZWRnCjIydnQxZTAzQkIrVmdjTDJmTnl1cW9pbXgwbGtGZE9DcmF5Q3ZlUlJGYzcyNTBmMWhFOC8wTGwzN2lrQkNnazAKTUdFZlRWOWhLZ0llT1IveTZjWDlkM0JuaWFjQzJlU3NQdks4ZFowKzlkRmUzUUlXY3hPU0JFTkxtekFvbkw4RgpIR0FKS2V3NWRwRUNnWUFnQjZIUTE2eGxZbHJzaUtGZWZwcXFkSTZkNnczS1hFN0ppNTdUaGpJdkQ5Y3pPWnIvCjN0dUdzakdmbnhGSUI1UTZYZzhKOE82T2RJNy90SmtSOHhUQWs1RVcxd0dhSThjcXAvY2I3dG0va0NlaURPQTMKMnVvK3lZZFF6ME5uWHdHMzEwS2FmZ0U2cUJqMk13S2w3WmIyTW5UbGxvTWJZeGNiTnpQb1pJWWlHUUtCZ1FERQoxVmJnVjA4VnJCb05OL1BVay9HeHNqNTFrNnhRbnJrSEJSNGZqSXR3SjJiZGtRWGhpSVJLeHlSNVJPd2hOekhGCkFENUhOUm1FcHM5bFNWM250MVRyWFNxcWZ3WTMwUkU3ZVJMdmltZTRhZll3MWdGSk5FdHZvYkNRVU9senBza3oKNTE1NXJ3YTVRUmcyQVBERW82NFQ2eWJZdUlMcURBa3RBTWp0UFlMZzBRS0JnQ2psajJBNXJveHhFc0Y2NGN5awpGVlIrUm9yTFVzMS80OS9mc2FKZnI2TldkbkowMXI1Yzc3eE1OVFlseWVVRDVHekZCR1N2TFYrUDgyeTBQS0hoCnRqdU1OOHF4L2VsK21EQXRIbDVJeXMvSm04ZFhuK0tkMlFxNk9pMHZEanJpTTRBT0cvRVpENnVCcGduMHJ0eWgKdjZuSXFDOW93R3FpeVNNYWk0U0pkYU9OCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+kind: Secret
+metadata:
+  name: kube-dashboard-fwdauth-certs
+  namespace: kube-dashboard
+type: kubernetes.io/tls
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+rules:
+- apiGroups: [""]
+  resources: ["serviceaccounts"]
+  verbs: ["watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+subjects:
+- kind: ServiceAccount
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+roleRef:
+  kind: ClusterRole 
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+spec:
+  selector:
+    app: kube-dashboard-fwdauth
+  ports:
+  - port: 443
+    targetPort: 8443
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-dashboard-fwdauth
+  namespace: kube-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-dashboard-fwdauth
+  template:
+    metadata:
+      labels:
+        app: kube-dashboard-fwdauth
+    spec:
+      containers:
+      - name: kube-dashboard-fwdauth
+        image: kube-dashboard-fwdauth:1.0.0
+        env:
+          - name: KUBE_DASHBOARD_NAMESPACE
+            value: kube-dashboard
+          - name: SERVICE_ACCOUNT_ANNOTIATION
+            value: user
+          - name: USER_HEADER
+            value: x-remote-user
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+          - mountPath: /certs/
+            name: certs
+      serviceAccountName: kube-dashboard-fwdauth
+      volumes:
+        - name: certs
+          secret:
+            secretName: kube-dashboard-fwdauth-certs
